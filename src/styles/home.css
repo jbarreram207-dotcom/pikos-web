@@ -1,0 +1,335 @@
+/* ============================================================
+   Inicio + tarjetas de promo + marquee
+   ============================================================ */
+
+.home {
+  overflow-x: clip; /* la banda inclinada y los stickers no deben generar scroll horizontal */
+}
+
+/* ---------- Marquee ---------- */
+.marquee {
+  position: relative;
+  z-index: 3;
+  margin: -14px -20px 0;
+  overflow: hidden;
+  background: var(--yellow);
+  color: var(--ink);
+  border-block: 3px solid var(--ink);
+  transform: rotate(-1.2deg);
+}
+.marquee__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+.marquee__group {
+  display: flex;
+  flex: none;
+}
+.marquee__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  padding: 0.35em 0 0.3em 0.7em;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.marquee__bolt {
+  width: 0.8em;
+  height: 0.8em;
+  color: var(--red);
+}
+
+/* ---------- Secciones ---------- */
+.section {
+  padding: clamp(64px, 10vw, 128px) 0;
+}
+.section--dark {
+  background: var(--ink);
+}
+.section--paper {
+  background: var(--paper);
+  color: var(--ink);
+}
+.section__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px 28px;
+  margin-bottom: clamp(26px, 4vw, 52px);
+}
+.section__kicker {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--yellow);
+}
+.section--paper .section__kicker {
+  color: var(--red);
+}
+.section__title {
+  font-size: clamp(2.6rem, 7.4vw, 5.6rem);
+  max-width: 14ch;
+}
+.section--paper .link-arrow {
+  color: var(--red);
+}
+
+/* ---------- Tarjeta de promo ---------- */
+.promo-grid {
+  display: grid;
+  gap: clamp(22px, 3vw, 34px);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+}
+.promo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border: 3px solid var(--ink);
+  border-radius: 28px;
+  background: var(--red-2);
+  color: var(--white);
+  box-shadow: 8px 8px 0 var(--ink);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.promo:hover {
+  transform: translate(-4px, -4px) rotate(-0.4deg);
+  box-shadow: 13px 13px 0 var(--ink);
+}
+.promo--ink {
+  background: var(--ink);
+  border-color: var(--white);
+  box-shadow: 8px 8px 0 var(--yellow);
+}
+.promo--ink:hover {
+  box-shadow: 13px 13px 0 var(--yellow);
+}
+.promo--yellow {
+  background: var(--yellow);
+  color: var(--ink);
+}
+.promo__media {
+  position: relative;
+  border-bottom: 3px solid var(--ink);
+}
+.promo--ink .promo__media {
+  border-bottom-color: var(--white);
+}
+.promo__media .photo img {
+  transition: transform 0.6s var(--ease);
+}
+.promo:hover .promo__media .photo img {
+  transform: scale(1.06);
+}
+.promo__price {
+  position: absolute;
+  right: 14px;
+  bottom: -26px;
+  z-index: 2;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  width: 108px;
+  height: 108px;
+  padding-top: 24px;
+  background: var(--white);
+  color: var(--red);
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  font-family: var(--font-display);
+  line-height: 1;
+  transform: rotate(6deg);
+  transition: transform 0.3s var(--ease);
+}
+.promo:hover .promo__price {
+  transform: rotate(-4deg) scale(1.06);
+}
+.promo__q {
+  font-size: 1.6rem;
+  margin-right: 2px;
+}
+.promo__n {
+  font-size: 3.4rem;
+}
+.promo__tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  padding: 0.2em 0.7em 0.25em;
+  background: var(--ink);
+  color: var(--white);
+  font-size: 1.3rem;
+  line-height: 1.1;
+  transform: rotate(-3deg);
+}
+.promo__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+  padding: 26px 22px 24px;
+}
+.promo__title {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  padding-right: 96px;
+}
+.promo__desc {
+  font-weight: 600;
+}
+.promo__note {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+.promo__btn {
+  align-self: flex-start;
+  margin-top: auto;
+}
+.promo--yellow .promo__btn,
+.promo--red .promo__btn {
+  background: var(--white);
+}
+
+/* ---------- Tiles del menú (adelanto) ---------- */
+.tiles {
+  display: grid;
+  gap: clamp(12px, 2vw, 22px);
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 900px) {
+  .tiles {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  height: 100%;
+  min-height: clamp(170px, 26vw, 300px);
+  padding: clamp(14px, 2vw, 24px);
+  background: var(--red);
+  color: var(--white);
+  border: 3px solid var(--white);
+  border-radius: 24px;
+  transition: transform 0.25s var(--ease), background 0.2s, color 0.2s, border-color 0.2s;
+}
+.tile:hover {
+  transform: translateY(-8px) rotate(-1.2deg);
+  background: var(--yellow);
+  color: var(--ink);
+  border-color: var(--yellow);
+}
+.tile__n {
+  font-family: var(--font-marker);
+  font-size: 1.4rem;
+  opacity: 0.85;
+}
+.tile__label {
+  font-size: clamp(1.7rem, 6.2vw, 2.6rem);
+  line-height: 0.95;
+  overflow-wrap: normal;
+}
+@media (min-width: 900px) {
+  .tile__label {
+    font-size: clamp(1.7rem, 2.7vw, 3rem);
+  }
+}
+.tile__arrow {
+  width: 34px;
+  height: 34px;
+  align-self: flex-end;
+  transition: transform 0.25s var(--ease);
+}
+.tile:hover .tile__arrow {
+  transform: translateX(6px) rotate(-30deg);
+}
+
+/* ---------- Ubicaciones (acceso rápido) ---------- */
+.quickloc {
+  display: grid;
+  gap: 16px;
+}
+@media (min-width: 900px) {
+  .quickloc {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.quickloc__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 18px;
+  padding: 22px;
+  background: var(--white);
+  border: 3px solid var(--ink);
+  border-radius: 24px;
+  box-shadow: 6px 6px 0 var(--ink);
+}
+.quickloc__pin {
+  width: 36px;
+  height: 36px;
+  flex: none;
+  color: var(--red);
+}
+.quickloc__txt {
+  flex: 1 1 220px;
+}
+.quickloc__name {
+  font-size: 1.9rem;
+  color: var(--red);
+  margin-bottom: 4px;
+}
+
+/* ---------- Invitación a pedir ---------- */
+.cta {
+  background: var(--yellow);
+  color: var(--ink);
+  padding: clamp(52px, 8vw, 100px) 0;
+  border-top: 3px solid var(--ink);
+}
+.cta__in {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+.cta__title {
+  font-size: clamp(3rem, 9vw, 7rem);
+}
+.cta__lead {
+  margin-top: 10px;
+  font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+  font-weight: 800;
+}
+
+/* Tarjeta de promo (adelanto del Inicio): producto recortado sobre fondo con trama */
+.promo__media {
+  background-color: var(--red-3);
+  background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.06) 0 14px, transparent 14px 28px);
+}
+.promo__media .photo--cut {
+  padding: 6%;
+}
+.notfound__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
+.notfound__path {
+  font-size: 0.9em;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+.notfound .btn {
+  margin-top: 0;
+}

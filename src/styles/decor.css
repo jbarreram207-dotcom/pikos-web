@@ -1,0 +1,153 @@
+/* =========================================================
+   Fotos reales como DECORACIÓN (Buffalo, Asian Zing, BBQ, Crunchers).
+   No son productos del menú: aria-hidden, sin clics, sin scroll horizontal.
+   ========================================================= */
+.deco-photo {
+  position: absolute;
+  display: block;
+  overflow: hidden;
+  pointer-events: none;
+  border: 3px solid var(--ink);
+  border-radius: 22px 40px 22px 40px;
+  background: var(--red-3);
+  box-shadow: 5px 6px 0 rgba(21, 11, 10, 0.85), 0 16px 26px rgba(21, 11, 10, 0.28);
+  transform: rotate(var(--r, 0deg));
+  /* entrada una sola vez + flotación suave después */
+  animation: deco-in 0.75s var(--ease) var(--dd, 0ms) both, deco-bob 6.5s ease-in-out calc(var(--dd, 0ms) + 0.8s) infinite;
+}
+.deco-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@keyframes deco-in {
+  from {
+    opacity: 0;
+    transform: translateY(26px) rotate(calc(var(--r, 0deg) + 9deg)) scale(0.82);
+  }
+}
+@keyframes deco-bob {
+  50% {
+    transform: translateY(-6px) rotate(calc(var(--r, 0deg) + 1.5deg));
+  }
+}
+
+/* ----- Encabezados de Menú y Promos: dos fotos sobre la ilustración, a la derecha ----- */
+.pagehead__decor {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  /* corta lo que pudiera sobresalir en horizontal sin recortar el contenido vertical */
+  overflow-x: clip;
+}
+.pagehead__decor .deco-photo {
+  aspect-ratio: 4 / 5;
+  width: clamp(70px, 10.5vw, 128px);
+}
+.pagehead__decor .deco-photo--a {
+  top: 2px;
+  right: clamp(92px, 19vw, 250px);
+}
+.pagehead__decor .deco-photo--b {
+  top: clamp(22px, 3.4vw, 44px);
+  right: clamp(8px, 4.5vw, 66px);
+}
+@media (max-width: 639px) {
+  .pagehead__decor .deco-photo {
+    width: 62px;
+    border-width: 2px;
+    box-shadow: 3px 4px 0 rgba(21, 11, 10, 0.85), 0 10px 16px rgba(21, 11, 10, 0.25);
+  }
+  .pagehead__decor .deco-photo--a {
+    top: 6px;
+    right: 78px;
+  }
+  .pagehead__decor .deco-photo--b {
+    top: 40px;
+    right: 8px;
+  }
+}
+/* En pantallas muy angostas solo una foto, para no tapar la ilustración */
+@media (max-width: 479px) {
+  .pagehead__decor .deco-photo--a {
+    display: none;
+  }
+  .pagehead__decor .deco-photo--b {
+    width: 70px;
+  }
+}
+
+/* ----- Inicio: invitación a pedir (columna de fotos a la derecha en escritorio) ----- */
+.cta {
+  overflow: hidden; /* las fotos inclinadas nunca provocan scroll horizontal */
+}
+.cta__decor {
+  display: none; /* en tablet y móvil la invitación se deja limpia */
+}
+@media (min-width: 900px) {
+  .cta__in {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    grid-template-areas:
+      'txt decor'
+      'btn decor';
+    align-items: center;
+    column-gap: 40px;
+    row-gap: 26px;
+  }
+  .cta__in > :nth-child(1) {
+    grid-area: txt;
+  }
+  .cta__in > :nth-child(3) {
+    grid-area: btn;
+    justify-self: start;
+  }
+  .cta__title {
+    font-size: clamp(3rem, 6.4vw, 5.6rem);
+  }
+  .cta__decor {
+    grid-area: decor;
+    display: block;
+    position: relative;
+    height: 250px;
+    pointer-events: none;
+  }
+  .cta__ph {
+    width: 128px;
+    aspect-ratio: 4 / 5;
+  }
+  .cta__ph--a {
+    left: 0;
+    top: 34px;
+  }
+  .cta__ph--b {
+    left: 96px;
+    top: 0;
+    z-index: 2;
+  }
+  .cta__ph--c {
+    left: 190px;
+    top: 58px;
+  }
+  .cta__flame,
+  .cta__bolt {
+    position: absolute;
+    color: var(--red);
+    filter: drop-shadow(2px 3px 0 var(--ink));
+  }
+  .cta__flame {
+    width: 44px;
+    left: 6px;
+    bottom: 6px;
+    transform: rotate(-12deg);
+  }
+  .cta__bolt {
+    width: 34px;
+    right: 6px;
+    bottom: 22px;
+    color: var(--white);
+    transform: rotate(14deg);
+  }
+}

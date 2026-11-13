@@ -1,0 +1,136 @@
+/* ============================================================
+   Pantalla de carga + vistas internas (Promos, …)
+   ============================================================ */
+
+/* ---------- Loader ---------- */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+}
+.loader__back,
+.loader__front {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+.loader__back {
+  background: var(--yellow);
+}
+.loader__front {
+  display: grid;
+  place-items: center;
+  background: var(--red);
+}
+.loader__logo {
+  position: relative;
+  padding-bottom: 18px;
+}
+.loader__logo img {
+  height: clamp(96px, 22vw, 190px);
+  width: auto;
+}
+.loader__text {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 22vw, 11rem);
+  line-height: 0.9;
+  color: var(--white);
+  text-shadow: 0.04em 0.04em 0 var(--ink);
+}
+.loader__bar {
+  position: absolute;
+  left: 2%;
+  right: 2%;
+  bottom: 0;
+  height: clamp(10px, 2vw, 16px);
+  background: var(--yellow);
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.loader__bolt {
+  position: absolute;
+  width: clamp(28px, 6vw, 54px);
+  color: var(--yellow);
+  filter: drop-shadow(2px 2px 0 var(--ink));
+}
+.loader__bolt--l {
+  left: -16%;
+  top: 4%;
+  transform: rotate(-14deg);
+}
+.loader__bolt--r {
+  right: -16%;
+  top: 30%;
+  transform: rotate(18deg);
+}
+
+/* ---------- Promos ---------- */
+.promos {
+  padding-bottom: clamp(56px, 9vw, 110px);
+}
+.promos__grid {
+  margin-top: clamp(22px, 3vw, 34px);
+}
+.promos__legal {
+  margin-top: 32px;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.promo--feature {
+  flex-direction: column;
+}
+.promo--feature .promo__media {
+  min-height: 260px;
+}
+.promo--feature .promo__title {
+  font-size: clamp(2.8rem, 8vw, 5.4rem);
+}
+@media (min-width: 900px) {
+  .promo--feature {
+    flex-direction: row;
+    align-items: stretch;
+  }
+  .promo--feature .promo__media {
+    flex: 1.25;
+    min-height: 420px;
+    border-bottom: 0;
+    border-right: 3px solid var(--ink);
+  }
+  .promo--feature .promo__price {
+    right: -54px;
+    bottom: auto;
+    top: 28px;
+    padding-top: 0;
+    align-items: center;
+  }
+  .promo--feature .promo__body {
+    flex: 1;
+    justify-content: center;
+    gap: 16px;
+    padding: 40px 40px 40px 82px;
+  }
+  .promo--feature .promo__title {
+    padding-right: 0;
+  }
+  .promo--feature .promo__btn {
+    margin-top: 12px;
+  }
+}
+
+/* ---------- Estado vacío (genérico) ---------- */
+.empty {
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+  padding: clamp(28px, 5vw, 56px);
+  border: 3px dashed rgba(255, 255, 255, 0.6);
+  border-radius: 28px;
+}
+.empty__title {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+}
